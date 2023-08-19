@@ -1,0 +1,18 @@
+:root {
+    --clr-dark: #2D3142;
+    --clr-light: #FFFFFF;
+    --clr-accent: #f0dc4e;
+}
+
+body {
+    background-color: var(--clr-light);
+}
+
+.bg-brand {
+    background-color: var(--clr-brand);
+    color: var(--clr-light) !important;
+}
+
+.logo {
+    max-width: 4rem;
+}
