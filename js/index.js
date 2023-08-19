@@ -44,20 +44,33 @@ async function sendDataToServer() {
 
 // 3. Descargar una imagen 
 
+// Esta URL expone un servicio para permitir CORS...
+const CORS_ANYWHERE = "https://cors-anywhere.herokuapp.com/"
+
+// ...puesto que este dominio no admite tales peticiones
 const IMAGE_URL = "https://via.placeholder.com/150";
 
 const imageContainer = document.querySelector("#image");
 
 const renderImage = (url) => `
-    <img src=${url} class="p-3" alt="Imagen de muestra">
+    <img src=${url} class="p-3 m-5" alt="Imagen de muestra">
 `
 
 async function downloadImage() {
-    const response = await fetch(IMAGE_URL, {
-        method: 'GET',
-    });
-    console.log(response);
+    const completeUrl = new URL(CORS_ANYWHERE + IMAGE_URL);
+    const response = await fetch(completeUrl);
+    // Obtenemos la imagen como un Blob,
+    // que representa datos binarios crudos
+    const blob = await response.blob();
+
+    // Transformamos el blob en una URL de objeto
+    const objectUrl = URL.createObjectURL(blob);
+    console.log(objectUrl)
+
+    imageContainer.innerHTML = renderImage(objectUrl);
 }
+
+
 
 // Configuración de manejadores de eventos
 
