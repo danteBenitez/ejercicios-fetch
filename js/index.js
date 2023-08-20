@@ -65,7 +65,6 @@ async function downloadImage() {
 
     // Transformamos el blob en una URL de objeto
     const objectUrl = URL.createObjectURL(blob);
-    console.log(objectUrl)
 
     imageContainer.innerHTML = renderImage(objectUrl);
 }
